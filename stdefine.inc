@@ -91,7 +91,7 @@
  {$IFDEF WIN32}
   {$DEFINE WIN95_HIGHPRIORITY} {Cat: для Win9x повышаем приоритет ДН-а, иначе дико тормозит из-за кривого ConAgent-а}
   {$DEFINE USELFN}
-  {.$DEFINE RecodeWhenDraw} {кириллические имена файлов хранятся в ANSI,}
+  {$DEFINE RecodeWhenDraw} {кириллические имена файлов хранятся в ANSI,}
                             {а перекодируются только при использовании}
  {$ENDIF}
  {$IFDEF DPMI32}

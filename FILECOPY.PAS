@@ -51,7 +51,7 @@ unit FileCopy;
 interface
 
 uses
-  Collect, FilesCol, Defines, Views
+  Collect, FilesCol, Defines, Views, U_KeyMap
   ;
 
 type

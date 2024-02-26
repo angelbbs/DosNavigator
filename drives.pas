@@ -1,4 +1,4 @@
-{///////////////////////////////////////// ////////////////////////////////
+{//////////////////////////// ///////////// ////////////////////////////////
 //
 //  Dos Navigator Open Source 1.51.08
 //  Based on Dos Navigator (C) 1991-99 RIT Research Labs
@@ -52,7 +52,7 @@ interface
 
 uses
   Defines, Objects2, Streams, Views, Drivers,
-  FilesCol, DiskInfo, Collect
+  FilesCol, DiskInfo, Collect, U_KeyMap
   , PDSetup
   ;
 
@@ -915,7 +915,7 @@ function TDrive.GetDirectory;
       ((SR.SR.Attr and Directory <> 0) or InFilter(PName^, FileMask))
     then
       begin
-      P := NewFileRec(SR.FullName {$IFDEF DualName}, SR.SR.Name {$ENDIF}
+      P := NewFileRec(SR.FullName {$IFDEF DualName}, SR.SR.Name {$ENDIF}//короткое имя в подвале
           , SR.FullSize, SR.SR.Time, SR.SR.CreationTime
           , SR.SR.LastAccessTime, SR.SR.Attr, @CurDir);
       Inc(MemReq, SizeOf(TFileRec));
@@ -986,7 +986,7 @@ procedure TDrive.GetDown;
     uLfn := PFilePanelRoot(Panel)^.PanSetup^.Show.
       ColumnsMask and psLFN_InColumns <> 0;
     if w = cfnTypeOther then
-      S2 := P^.FlName[uLfn xor InvLFN]
+      S2 := P^.FlName[uLfn xor InvLFN]//короткое имя в подвале
     else
       {$ENDIF}
       S2 := P^.FlName[True];
@@ -1296,6 +1296,7 @@ procedure TDrive.DrvFindFile(FC: PFilesCollection);
   ConfigModified := True; {AK155 Не понял. При чём тут конфиг?!!}
   DelLeft(FindRec.Mask);
   DelRight(FindRec.Mask);
+
   if FindRec.Mask = '' then
     FindRec.Mask := x_x;
   if  (Pos('*', FindRec.Mask) = 0) and

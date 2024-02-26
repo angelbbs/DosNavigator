@@ -55,7 +55,7 @@ interface
 uses
   Collect, Defines, Objects2, Streams, Views,
   FilesCol, DiskInfo,
-  Drives, Commands, Archiver, FStorage
+  Drives, Commands, Archiver, FStorage, U_KeyMap
   ;
 
 type
@@ -497,8 +497,15 @@ function TArcDrive.ReadArchive;
       Replace('/', '\', FileInfo.FName);
       if FileInfo.FName[1] <> '\' then
         FileInfo.FName := '\'+FileInfo.FName;
+
       if FileInfo.Attr and Directory <> 0 then
         FileInfo.FName := FileInfo.FName+'\';
+
+//angelbbs
+    {$IFDEF RecodeWhenDraw}
+    FileInfo.FName := OemToCharStr(FileInfo.FName);
+    {$ENDIF}
+
 
       if FileInfo.FName[length(FileInfo.FName)] = '\' then
         FileInfo.Attr := FileInfo.Attr or Directory;
@@ -850,7 +857,9 @@ TryAgain:
   if not (AType^.SwapWhenExec and RunUnp) then
     begin
   {$ENDIF}
-    TempFileSWP := {$IFDEF RecodeWhenDraw}OemToCharStr {$ENDIF}(TempFile);
+//    TempFileSWP := {$IFDEF RecodeWhenDraw}OemToCharStr {$ENDIF}(TempFile);
+//angelbbs
+    TempFileSWP := {$IFDEF RecodeWhenDraw} {$ENDIF}(TempFile);
     TempFile := ''; {-$VOL}
     Message(Application, evCommand, cmRetrieveSwp, nil); {JO}
   {$IFDEF DPMI32}
@@ -1549,7 +1558,12 @@ procedure TArcDrive.EraseFiles;
   if AFiles^.Count = 1 then
     begin
     PF := AFiles^.At(0);
-    S := GetString(dlEraseConfirm1)+PF^.FlName[True]+' ?';
+    S := GetString(dlEraseConfirm1)+
+//angelbbs
+    {$IFDEF RecodeWhenDraw}
+    CharToOemStr
+    {$ENDIF}
+(PF^.FlName[True])+' ?';
     end
   else
     S := GetString(dlEraseConfirms1);

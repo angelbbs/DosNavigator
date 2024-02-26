@@ -2835,11 +2835,13 @@ var
   lvConsoleOutputOEM:        Boolean;
 
 begin
+
   lvConsoleInputCP := GetConsoleCP;
   lvConsoleOutputCP := GetConsoleOutputCP;
 
   if (lvConsoleInputCP = GetOEMCP) and (lvConsoleOutputCP = GetOEMCP) then
     SetFileApisToOEM
+//    SetFileApisToANSI
   else
     begin
       lvConsoleInputOEM := False;
@@ -2853,6 +2855,7 @@ begin
 
       if (lvConsoleInputOEM and lvConsoleOutputOEM) then
         SetFileApisToOEM;
+//        SetFileApisToANSI;
 
     end; // if (lvConsoleInputCP = GetOEMCP) and (lvConsoleOutputCP = GetOEMCP) then
 
@@ -2877,9 +2880,13 @@ begin
   else
     ClipFormat := cf_UnicodeText;
   if IsConsole then
-    SetFileApisToOEM
+//    SetFileApisToOEM
+    SetFileApisToANSI
   else
-    SetFileApisToAnsi;
+    SetFileApisToANSI;
+//    SetFileApisToOEM;
+SetConsoleOutputCP(866);
+SetConsoleCP(866);
 end;
 
 procedure SysLowInitPreTLS;

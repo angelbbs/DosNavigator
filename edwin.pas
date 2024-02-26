@@ -51,7 +51,7 @@ unit EdWin;
 interface
 
 uses
-  Defines, Streams, Objects2, Microed, Menus, ed2, UniWin
+  Defines, Streams, Objects2, Microed, Menus, ed2, UniWin, U_KeyMap
   ;
 
 type
@@ -248,6 +248,7 @@ constructor TEditWindow.Init;
   PFileEditor(Intern)^.OptMenu := Pointer(Pi);
 
   Insert(Intern);
+
   MILoadFile(Intern, FileName);
   if not Intern^.isValid then
     begin

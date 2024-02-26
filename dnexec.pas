@@ -50,7 +50,7 @@ unit DnExec;
 interface
 
 uses
-  Defines, FilesCol, Commands
+  Defines, FilesCol, Commands, U_KeyMap
   ;
 
 procedure ExecString(const S: AnsiString; const WS: String);
@@ -721,8 +721,8 @@ procedure ExecFile(const FileName: String);
     CommandLine^.SetData(S);
     {/AK155}
     if B then
-      ExecString(M, #13#10+ {$IFDEF RecodeWhenDraw}CharToOemStr
-           {$ENDIF}(ActiveDir)+'>'+ {$IFDEF RecodeWhenDraw}CharToOemStr
+      ExecString(M, #13#10+ {$IFDEF RecodeWhenDraw}CharToOemStr 
+           {$ENDIF}(ActiveDir)+'>'+ {$IFDEF RecodeWhenDraw}CharToOemStr 
         {$ENDIF}(M))
     else
       ExecString(M, '');

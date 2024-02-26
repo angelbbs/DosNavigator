@@ -52,7 +52,7 @@ unit CmdLine;
 interface
 
 uses
-  Drivers, Defines, Views
+  Drivers, Defines, Views, U_KeyMap
   ;
 
 type

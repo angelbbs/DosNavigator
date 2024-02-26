@@ -1,21 +1,24 @@
-DOC Documentation for DN/2
-RESOURCE Resource source for DN/2
-drivers._vp Drivers for VP
-fio._vp File Input/Output for VP
-views._vp Views for VP
-vpc.cfg VPC Configutation file
+doc Documentation for DN/2
+resource Resource source for DN/2
 _dnco.cmd Batch for compilation under OS/2
 _dncod.cmd Batch for compilation DPMI32 version under OS/2
 _dncow.cmd Batch for compilation Win32 version under OS/2
+_dncw.bat Batch for compilation under Windows 9x
 _dncw.cmd Batch for compilation under Windows NT
 _dncwd.cmd Batch for compilation DPMI32 version under Win32
 _dncwo.cmd Batch for compilation OS/2 version under Win32
 _rcpo.cmd Batch for compilation Resources
+dn2pmapi.pas OS/2 Presentation Manager API interface
+drivers._vp Drivers for VP
 file_id.diz Logo
-stdefine.inc Defines for project
+fio._vp File Input/Output for VP
+hideview.pas Hide view
 rcpvpd.ini Resource compiler options for DPMI
 rcpvpo.ini Resource compiler options for OS/2
 rcpvpw.ini Resource compiler options for Win32
+stdefine.inc Defines for project
+views._vp Views for VP
+vpc.cfg VPC Configutation file
 _apps.pas DN/2 Plugin Interface - object model
 _collect.pas DN/2 Plugin Interface - object model
 _defines.pas DN/2 Plugin Interface - object model
@@ -65,10 +68,8 @@ arc_zip.pas Support for ZIP
 arc_zoo.pas Support for ZOO
 arc_zxz.pas Support for ZXZ
 archdet.pas Archiver detectors
-archiver.pas Archivators access
 archread.pas Archivers output list reader
 archset.pas Archivers setups manager
-arcview.pas View archives as drives
 arvid.pas Access to ARVID tapes
 arvidavt.pas Support for AVT format
 arvidtdr.pas Support for TDR format
@@ -79,13 +80,11 @@ calendar.pas Calendar
 callspcb.pas Compiler-independent mechanisms to call special functions
 ccalc.pas Calculator
 cellscol.pas Cells collection for spreadsheet
-cmdline.pas Command line
 collect.pas Collections
 colors.pas Colors
 colorsel.pas Color selector
 colorvga.pas VGA Color
 commands.pas Constants
-dblwnd.pas Double Window
 dbview.pas .DBF Viewer
 dbwatch.pas .DBF access
 decoder.pas Part of DisAsm
@@ -96,32 +95,19 @@ diskinfo.pas Disk info
 dn.pas Main program module
 dn1.pas Main program module, Part 2
 dnapp.pas DN Application unit
-dnexec.pas Execution functions
 dnfuncs.pas Interface with plugins - functions & objects to export
 dnhelp.pas Help constants
 dnini.pas Ini Configuration
 dnpmapil.pas OS/2 Presentation Manager API interface
-dnstddlg.pas DN Standard dialogs
-dnutil.pas DN Utilites: About & other
 drivers.pas Low-level device drivers
 drivers2.pas Fail information
-drives.pas Drive access
 eaoper.pas Enhanced Attributes handling (OS/2 only)
-ed2.pas Part of editor
 editor.pas Part of editor
-edwin.pas Part of editor
-eraser.pas File eraser
 errmess.pas Error messages
-fbb.pas LongCopy
-filecopy.pas Files copyer
 filediz.pas Files descriptions support
-filefind.pas Files finder
 filelst.pas Files list creating
 filescol.pas Files collection
 findobj.pas Find objects (for ARVID support)
-flpanel.pas Files panel
-flpanelx.pas Files panel
-fltools.pas Files tools
 fstorage.pas Files storage
 fviewer.pas File viewer
 gauge.pas Gauges: Bar, Percent
@@ -139,9 +125,6 @@ listmakr.pas Part of Resource Compiler
 macro.pas Macro editor & environment editor
 memory.pas Memory access
 menus.pas Menus
-messages.pas Message boxes
-microed.pas Editor
-microed2.pas Microed: Read/Write/Store/Load methods
 objects.pas Main objects: TObject, Streams, other.
 objtype.pas Object types
 openobj.pas WPS file object opening utility for DN/2
@@ -164,7 +147,6 @@ swe.pas Inputs
 tasklst.pas Task list
 tetris.pas Tetris
 titleset.pas Application title changing support
-tree.pas View of disk tree
 tvhc.pas TV Help Compiler
 u_keymap.pas Keyboard map
 u_myapp.pas Main aplication object
@@ -177,7 +159,6 @@ uucode.pas UU Encode/Decode
 uue2inc.pas UU encode/decode
 validate.pas Validators
 vars.pas Access to global variables from Win32 plugins
-version.pas Version.Inc generator
 videoman.pas Video mode manager
 views.pas Standard views
 vpsyslo2.pas VPSysLow extension unit for VP
@@ -185,3 +166,25 @@ vpsyslow.pas основная часть VPSysLow
 winclpvp.pas Windows clipboard connection for VP
 xdblwnd.pas Double Window
 xtime.pas Extended time support
+archiver.pas Archivators access
+arcview.pas View archives as drives
+cmdline.pas Command line
+dblwnd.pas Double Window
+dnexec.pas Execution functions
+dnstddlg.pas DN Standard dialogs
+dnutil.pas DN Utilites: About & other
+drives.pas Drive access
+ed2.pas Part of editor
+edwin.pas Part of editor
+eraser.pas File eraser
+fbb.pas LongCopy
+filecopy.pas Files copyer
+filefind.pas Files finder
+flpanel.pas Files panel
+flpanelx.pas Files panel
+fltools.pas Files tools
+messages.pas Message boxes
+microed.pas Editor
+microed2.pas Microed: Read/Write/Store/Load methods
+tree.pas View of disk tree
+version.pas Version.Inc generator

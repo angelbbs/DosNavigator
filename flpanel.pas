@@ -53,7 +53,7 @@ interface
 
 uses
   Defines, Streams, Views, Drivers, FilesCol,
-  FlPanelX, Collect, TopView_
+  FlPanelX, Collect, TopView_, U_KeyMap
   ;
 
 type
@@ -1560,6 +1560,13 @@ function MakeLongName(IV: PInfoView): Boolean;
   if S = '' then
     Exit;
   Result := True;
+
+//angelbbs
+    {$IFDEF RecodeWhenDraw}
+    S := CharToOemStr(S);
+    {$ENDIF}
+
+
   if Y <> 0 then
     MoveChar(B, ' ', C9, IV^.Size.X+IV^.Panel^.DeltaX);
   if I < 0 then
@@ -1623,7 +1630,9 @@ procedure TInfoView.CompileShowOptions;
       Compile(PackedSizeInfo, MakePacked, nil);
       Compile(BriefPercentInfo, nil, MakeRatio);
       end;
+
     Compile(LFN_InFooter, MakeLongName, nil);
+
     Compile(TotalsInfo, MakeTotals, MakeTotalsBrief);
     Compile(FreeSpaceInfo, MakeFreeSpace, nil);
     if (FilterInfo in [1..MaxFooterHeight]) and
@@ -1741,7 +1750,7 @@ function TInfoView.GetPalette;
 
 function TDirView.GetText(MaxWidth: Integer): String;
   begin
-  Result := {$IFDEF RecodeWhenDraw}CharToOemStrPanel{$ENDIF}
+  Result := {$IFDEF RecodeWhenDraw}CharToOemStr{$ENDIF}
     (PFilePanelRoot(Panel)^.DirectoryName);
   Result := Cut(Result, MaxWidth);
   end { TDirView.Draw };

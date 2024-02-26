@@ -211,7 +211,8 @@ const
 
   dlAbout = #13#3'DN/2 Open Source'+
   #13#3'Version %s, %s'+
-  #13#3'http://www.dnosp.ru/'#13+
+//  #13#3'http://www.dnosp.ru/'#13+
+  #13#3''+
   #13#3'Based on: '+
   'Dos Navigator Open Source 1.51.08'#13+
   {$IFDEF LITE}+#3'Light version'#13+ {$ENDIF}
@@ -1966,8 +1967,9 @@ procedure TDNApplication.HandleCommand;
       D: array[1..2] of PString;
     begin
     {$IFDEF DNPRG}
-    D[1] := NewStr(VersionName);
-    D[2] := NewStr(#13+#3+'Compiled '+VersionDate);
+//    D[1] := NewStr(VersionName);
+    D[1] := NewStr('2.14 for Win11 with cyrillic fix   by angelbbs');
+    D[2] := NewStr(#13#3+'Compiled '+VersionDate);
     MessageBox2(dlAbout, ^C'Based on Dos Navigator'#13+
       +^C'Copyright (C) 1991-99 RIT Research Labs'#13#13+
       +^C'This product is a FREEWARE', @D, nil, mfAbout+mfOKButton);

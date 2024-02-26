@@ -64,7 +64,7 @@ uses
   Dos, Lfn {DataCompBoy}, FilesCol, Commands, Advance, Advance1, Advance2,
   Startup, Messages, xTime, Drivers, Tree, Memory,
   DNApp, Gauge, Views, Dialogs, Drives, FileCopy
-  , fnotify, Events
+  , fnotify, Events, U_KeyMap
   {JO} {$IFDEF OS2}, VPUtils {$ENDIF}, FlTl
 
   ;
@@ -352,7 +352,8 @@ TryDel:
         if Confirms and cfEraseSubDir = 0 then
           dr := cmYes
         else
-          dr := MessageBox(^C+GetString(dlDirectory)+' '+Cut(S,
+//angelbbs
+          dr := MessageBox(^C+(GetString(dlDirectory))+' '+Cut({$IFDEF RecodeWhenDraw}CharToOemStr {$ENDIF}(S),
                40)+GetString(dlEraseDirNotEmpty),
               nil,
 

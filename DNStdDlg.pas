@@ -53,7 +53,7 @@ unit DNStdDlg;
 interface
 
 uses
-  FilesCol, Collect, Defines, Streams, Drivers, Views, Dialogs
+  FilesCol, Collect, Defines, Streams, Drivers, Views, Dialogs, U_KeyMap
   ;
 
 const
@@ -775,6 +775,11 @@ procedure TDirectoryList.ReadDirectory(AWildCard: String);
         Time := S.SR.Time;
         Size := S.FullSize;
         Name := S.FullName;
+//angelbbs
+    {$IFDEF RecodeWhenDraw}
+    Name := CharToOemStr(Name);
+    {$ENDIF}
+
         end;
       FileList^.Insert(P);
       end;
@@ -821,6 +826,12 @@ procedure TFileInfoPane.Draw;
       PFileDialog(Owner)^.WildCard^;
   {$ELSE}
   Path := PFileDialog(Owner)^.Directory^+PFileDialog(Owner)^.WildCard^;
+
+//angelbbs
+    {$IFDEF RecodeWhenDraw}
+    Path := CharToOemStr(Path);
+    {$ENDIF}
+
   {$ENDIF}
   Color := GetColor($01);
   MoveChar(B, ' ', Color, Size.X);
@@ -1318,6 +1329,11 @@ function TFileDialog.Valid(Command: Word): Boolean;
 
   function CheckDirectory(var S: String): Boolean;
     begin
+//angelbbs
+    {$IFDEF RecodeWhenDraw}
+    S := OemToCharStr(S);
+    {$ENDIF}
+
     if not PathExist(S) then
       begin
       ErrMsg(erInvalidDrive);
@@ -1477,6 +1493,7 @@ function GetFileNameDialog(Mask, Title, Name: String;
     {$ENDIF}
     HistoryAdd(HistoryId, S);
     end;
+
   GetFileNameDialog := S
   end { GetFileNameDialog };
 

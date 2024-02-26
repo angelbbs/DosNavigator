@@ -212,8 +212,8 @@ function MessageBox2;
       end;
     if Msg1[j] > #31 then
       Inc(k);
-    if k > 70 then
-      k := 70;
+    if k > 76 then
+      k := 76;
     end;
   if k > l then
     l := k;
@@ -234,8 +234,8 @@ function MessageBox2;
       end;
     if Msg2[j1] > #31 then
       Inc(k1);
-    if k1 > 70 then
-      k1 := 70;
+    if k1 > 76 then
+      k1 := 76;
     end;
   if k1 > l then
     l1 := k1;

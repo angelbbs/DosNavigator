@@ -52,7 +52,7 @@ interface
 
 uses
   Collect, Drivers, Defines, Streams,
-  Dialogs, Views, FilesCol
+  Dialogs, Views, FilesCol, U_KeyMap
   ;
 
 type

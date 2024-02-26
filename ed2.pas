@@ -471,6 +471,13 @@ function CheckForOver(Name: String): PStream; {<Microed2.001>}
       Dr: String[30];
     begin
     P := @Dr;
+
+//angelbbs
+    {$IFDEF RecodeWhenDraw}
+    Name := CharToOemStr(Name);
+    {$ENDIF}
+
+
     Dr := Cut(Name, 30);
     W := Msg(dlED_OverQuery, @P,
          mfYesButton+mfCancelButton+mfAppendButton+mfWarning);

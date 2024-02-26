@@ -3350,6 +3350,8 @@ procedure TFilePanelRoot.FormatName(P: PFileRec; var S: String; var L: Integer);
     ExtNotExist: Boolean;
   begin
   S := P^.FlName[uLFN];
+//angelbbs
+//правильная кодировка панелей
   {$IFDEF RecodeWhenDraw}
   if uLFN then
     S := CharToOemStr(S);

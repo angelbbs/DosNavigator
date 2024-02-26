@@ -49,7 +49,7 @@ unit FLTools;
 
 interface
 uses
-  FilesCol, FlPanelX, PDSetup
+  FilesCol, FlPanelX, PDSetup, U_KeyMap
   ;
 
 procedure CM_AdvancedFilter(AFP: Pointer);

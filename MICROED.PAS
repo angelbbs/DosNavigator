@@ -1393,6 +1393,13 @@ procedure OpenEditor;
   S := GetFileNameDialog(x_x, GetString(dlED_OpenFile),
       GetString(dlOpenFileName),
       fdOpenButton+fdHelpButton, hsEditOpen);
+
+//angelbbs
+    {$IFDEF RecodeWhenDraw}
+    S := OemToCharStr(S);//правильная кодировка при создании файла SHIFT+F4
+    {$ENDIF}
+
+
   if S = '' then
     Exit;
   Desktop^.GetExtent(R);

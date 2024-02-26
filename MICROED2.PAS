@@ -126,6 +126,13 @@ procedure MISaveFileAs(AED: PFileEditor);
         fdOKButton+fdHelpButton, hsEditSave);
     if FileName <> '' then
       begin
+
+//angelbbs
+    {$IFDEF RecodeWhenDraw}
+    FileName := OemToCharStr(FileName);//сохраняет файл в правильной кодировке по SaveAS
+    {$ENDIF}
+
+
       MIUnLockFile(AED);
       S := CheckForOver(FileName);
       if S = nil then
@@ -140,12 +147,21 @@ procedure MISaveFileAs(AED: PFileEditor);
       Dispose(S, Done);
       FileChanged(EditName);
       DisposeStr(PWindow(Owner)^.Title);
+
+//angelbbs
+    {$IFDEF RecodeWhenDraw}
+    EditName := CharToOemStr(EditName);//кодировка при Save As
+    {$ENDIF}
+
+
       if EditName = ''
       then
         PWindow(Owner)^.Title := NewStr(GetString(dlEditTitle))
       else
-        PWindow(Owner)^.Title := NewStr(GetString(dlEditTitle)+' - '+
-            {$IFDEF RecodeWhenDraw}CharToOemStr {$ENDIF}(EditName));
+        PWindow(Owner)^.Title := NewStr(GetString(dlEditTitle)+' -1 '+
+//angelbbs
+//            {$IFDEF RecodeWhenDraw}CharToOemStr {$ENDIF}(EditName));
+            {$IFDEF RecodeWhenDraw} {$ENDIF}(EditName));
       Owner^.Redraw;
       Modified := False;
       MILockFile(AED);
@@ -227,11 +243,18 @@ procedure MISaveFile(AED: PFileEditor);
       end
     else
       begin {-$VOL end}
+
       if EditName = '' then
         begin
         MISaveFileAs(AED);
         Exit
         end;
+
+//angelbbs
+    {$IFDEF RecodeWhenDraw}
+    EditName := OemToCharStr(EditName);//сохраняет файл по SHIFT+F4 в правильной кодировке
+    {$ENDIF}
+
       FileExist := False;
       lAssignFile(F, EditName);
       ClrIO;
@@ -429,6 +452,13 @@ procedure MILoadFile(AED: PFileEditor; Name: String);
     if Name <> '' then
       Name := lFExpand(Name);
     EditName := Name;
+
+  //angelbbs
+    {$IFDEF RecodeWhenDraw}
+    EditName := CharToOemStr(EditName);
+    {$ENDIF}
+
+
     DisposeStr(PWindow(Owner)^.Title);
     {Cat:warn а не бред ли это?}
     if '*^&'+EditName = TempFile then
@@ -446,8 +476,12 @@ procedure MILoadFile(AED: PFileEditor; Name: String);
       end
     else if EditName <> ''
     then
+
       PWindow(Owner)^.Title := NewStr(GetString(dlEditTitle)+' - '+
-          {$IFDEF RecodeWhenDraw}CharToOemStr {$ENDIF}(EditName))
+//angelbbs
+ //         {$IFDEF RecodeWhenDraw}CharToOemStr {$ENDIF}(EditName))
+          {$IFDEF RecodeWhenDraw} {$ENDIF}(EditName))
+
     else
       PWindow(Owner)^.Title := NewStr(GetString(dlEditTitle));
     MILockFile(AED);

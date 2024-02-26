@@ -488,11 +488,13 @@ function FindFiles(var Files: PFilesCollection;
 
     if CancelSearch then
       Exit;
+
     PName := @SR.FullName;
     {$IFDEF DualName}
     if ShortNameSearch then // в панели короткие имена
-      PName := @SR.SR.Name;
+      PName := @(SR.SR.Name);
     {$ENDIF}
+
     LongWorkBegin;
     New(DirCol, Init($10, $10, False));
     DirCol^.Insert(NewStr(Path));
@@ -529,7 +531,8 @@ function FindFiles(var Files: PFilesCollection;
         do
           begin
           if not IsDummyDir(SR.SR.Name)
-            and (InFilter(PName^, FindRec.Mask+FindRec.AddChar))
+//angelbbs
+            and (InFilter(PName^, {$IFDEF RecodeWhenDraw}OemToCharStr {$ENDIF}(FindRec.Mask+FindRec.AddChar)))
             and ((FindRec.Options and ffoAdvanced = 0) or (SR.SR.Time >=
                  DateAfter)
               and (SR.SR.Time <= DateBefore) and (SR.FullSize >=
@@ -1754,6 +1757,7 @@ function TFindDrive.GetInternalName;
 
 function TFindDrive.GetDir: String;
   var
+    S0: String;
     S: String;
     SX: LongInt;
   begin
@@ -1766,17 +1770,18 @@ function TFindDrive.GetDir: String;
   else
     begin
     S := GetString(dlFindPanel);
+
     SX := SizeX-Length(S)-12;
     if  (AMask <> nil) and (AWhat <> nil) and (AMask^ <> x_x)
     then
-      GetDir := S+
+      GetDir := S+{$IFDEF RecodeWhenDraw}OemToCharStr{$ENDIF}(//angelbbs
         Cut(AMask^, ((SX div 3) shl 1))+'|'+
-        Cut(AWhat^, (SX-Min(((SX div 3) shl 1), Length(AMask^))))
+        Cut(AWhat^, (SX-Min(((SX div 3) shl 1), Length(AMask^)))))
     else if (AWhat <> nil) and ((AMask = nil) or (AMask^ = x_x))
     then
-      GetDir := S+Cut('*.*|'+AWhat^, SX) {???}
+      GetDir := S+{$IFDEF RecodeWhenDraw}OemToCharStr{$ENDIF}(Cut('*.*|'+AWhat^, SX)) {???}
     else if AMask <> nil then
-      GetDir := S+Cut(AMask^, SX)
+      GetDir := S+{$IFDEF RecodeWhenDraw}OemToCharStr{$ENDIF}(Cut(AMask^, SX))
     else
       GetDir := S+'*.*';
     end;
@@ -2501,6 +2506,7 @@ procedure TFindDrive.DrvFindFile(FC: PFilesCollection);
   Inc(SkyEnabled);
   New(PInfo, Init(R));
   PInfo^.Options := PInfo^.Options or ofSelectable or ofCentered;
+
   if FindRec.What = ''
   then
     PInfo^.Top := GetString(dlDBViewSearch)+Cut(FindRec.Mask, 50)

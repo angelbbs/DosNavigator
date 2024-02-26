@@ -119,7 +119,9 @@ Writeln(' '#254' Creating ', ParamStr(1)+' '+VersionName);
 
 GetDate(Year, Month, Day, dow);
 Str(Year, VersionDate);
-VersionDate := DOWs[dow]+', '+Days[Day]+' '+Months[Month]+' '+
+//Compiled Fri, 19 Sep 2008 at 15:27:17
+//VersionDate := DOWs[dow]+', '+Days[Day]+' '+Months[Month]+' '+
+VersionDate := Days[Day]+' '+Months[Month]+' '+
   VersionDate+' at '+GetCurTime;
 Assign(F, ParamStr(1));
 Rewrite(F);

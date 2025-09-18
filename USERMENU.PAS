@@ -52,7 +52,7 @@ unit UserMenu;
 interface
 
 uses
-  Defines, Views, Scroller, Drivers, FilesCol
+  Defines, Views, Scroller, Drivers, FilesCol, U_KeyMap
   ;
 
 var
@@ -810,6 +810,11 @@ function ExecUserMenu;
         begin
         New(UI);
         S := MakeString(S, @UserParams, True, nil);
+//angelbbs
+    {$IFDEF RecodeWhenDraw}
+    S := CharToOemStr(S);
+    {$ENDIF}
+
         UI^.Text := NewStr(S);
         UI^.Level := StoI(S1);
         if  (CStrLen(S) > NW) and (UI^.Level = 1) then
@@ -821,6 +826,7 @@ function ExecUserMenu;
       end;
     end;
   S := F^.FileName;
+
   Dispose(F, Done);
   if P^.Count > 0 then
     begin
@@ -919,7 +925,10 @@ function ExecUserMenu;
               Writeln(F1.T, '@Echo off');
             WriteEcho := False;
             {$ENDIF}
-            Writeln(F1.T, MakeString(S, @UserParams, False, nil));
+
+//angelbbs
+//            Writeln(F1.T, MakeString(S, @UserParams, False, nil));
+            Writeln(F1.T, CharToOemStr(MakeString(S, @UserParams, False, nil)));
             RunFrom2E := UI^.RunFrom2E;
             end;
           end;

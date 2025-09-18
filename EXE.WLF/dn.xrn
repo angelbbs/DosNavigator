@@ -1,6 +1,8 @@
 ; Dos Navigator Quick run configuration file
 
 ;Ctrl-Shift-F1
+>1
+explorer.exe .
 ;>>1
 ;nemo
 ;Ctrl-Shift-F2

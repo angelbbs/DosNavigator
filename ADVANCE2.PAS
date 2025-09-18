@@ -1231,6 +1231,10 @@ function QSMaskPlusStar: String;
   Result := QSMask;
   if Result[Length(Result)] <> '*' then
     Result := Result + '*';
+//angelbbs
+    {$IFDEF RecodeWhenDraw}
+//    Result := OemToCharStr(Result);
+    {$ENDIF}
   end;
 
 procedure InitQuickSearch(Panel: PView);
@@ -1281,7 +1285,7 @@ function QuickSearchString(SizeX: Word): String;
     l, i: Integer;
     DefaultStar: Boolean;
   begin
-  Result := GetString(dlFileSearch);
+  Result := (GetString(dlFileSearch));
   DefaultStar := QSMask[Length(QSMask)] <> '*';
   L := SizeX - Length(Result) - Ord(DefaultStar) - 1;
 
@@ -1309,11 +1313,19 @@ function QuickSearchString(SizeX: Word): String;
     Inc(l);
     S[l] := QSMask[i]
     end;
+
   SetLength(S, l+1);
   S[l+1] := '~';
   if DefaultStar then
     S := S + '*';
+
+//S := OemToCharStr(S);
   Result := Result + S;
+//angelbbs
+    {$IFDEF RecodeWhenDraw}
+//    Result := OemToCharStr(Result);
+    {$ENDIF}
+
   end;
 
 {-DataCompBoy-}

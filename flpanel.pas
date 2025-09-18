@@ -1856,7 +1856,9 @@ procedure TFilePanel.HandleEvent;
     if I >= Files^.Count then
       I := 0;
     repeat
-      if InMask(PFileRec(Files^.At(I))^.FlName[uLfn],
+//      if InMask(PFileRec(Files^.At(I))^.FlName[uLfn],
+//angelbbs
+      if InMask(CharToOemStr(PFileRec(Files^.At(I))^.FlName[uLfn]),
            QSMaskPlusStar)
       then
         begin

@@ -46,5 +46,5 @@
 //////////////////////////////////////////////////////////////////////////}
   Const
      VersionName ='2.14 beta/WLF';
-     VersionDate ='18 Sep 2025 at 18:12:47';
+     VersionDate ='30 Nov 2025 at 16:27:44';
      VersionWord:AWord = $3B5E;

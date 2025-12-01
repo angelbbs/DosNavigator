@@ -523,7 +523,9 @@ RL:
                   Writeln(F1.T, '@Echo off');
                 WriteEcho := False;
                 {$ENDIF}
-                Writeln(F1.T, s);
+//angelbbs
+                Writeln(F1.T, CharToOemStr(s));
+                //Writeln(F1.T, s);
                 Break
                 end;
               end;
@@ -544,7 +546,9 @@ RL:
                 Writeln(F1.T, '@Echo off');
               WriteEcho := False;
               {$ENDIF}
-              Writeln(F1.T, s);
+//angelbbs
+               Writeln(F1.T, CharToOemStr(s));
+//              Writeln(F1.T, s);
               First := False;
               end;
             if  (f^.Eof) then
@@ -721,8 +725,8 @@ procedure ExecFile(const FileName: String);
     CommandLine^.SetData(S);
     {/AK155}
     if B then
-      ExecString(M, #13#10+ {$IFDEF RecodeWhenDraw}CharToOemStr 
-           {$ENDIF}(ActiveDir)+'>'+ {$IFDEF RecodeWhenDraw}CharToOemStr 
+      ExecString(M, #13#10+ {$IFDEF RecodeWhenDraw}CharToOemStr
+           {$ENDIF}(ActiveDir)+'>'+ {$IFDEF RecodeWhenDraw}CharToOemStr
         {$ENDIF}(M))
     else
       ExecString(M, '');

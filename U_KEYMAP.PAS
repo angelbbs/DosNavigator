@@ -234,6 +234,8 @@ asm
 
 const
   WinSetA = [#224, #229, #232, #238, #243];
+//  WinSetA = [#$F2, #$E5, #$F1];
+//  KoiSetA = [#$F2, #$E5, #$F1];
   KoiSetA = [#193, #197, #201, #207, #213];
 
 procedure TCodePageDetector.CheckString(P1: PChar; len: Integer);

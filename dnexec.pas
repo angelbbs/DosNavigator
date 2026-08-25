@@ -472,12 +472,18 @@ RL:
   while (not f^.Eof) and (not AllRight) do
     begin
     s := f^.GetStr;
+//angelbbs
+    s := OemToCharStr(s);
+//    s := CharToOemStr(s);
     if s[1] <> ' ' then
       begin
       I := PosChar(BgCh, s);
       if  (I = 0) or (s[I+1] = BgCh) then
         Continue;
       s1 := Copy(s, 1, I-1);
+//angelbbs
+    s1 := OemToCharStr(s1);
+
       DelLeft(s1);
       DelRight(s1);
       if s1[1] <> ';' then
@@ -524,8 +530,8 @@ RL:
                 WriteEcho := False;
                 {$ENDIF}
 //angelbbs
-                Writeln(F1.T, CharToOemStr(s));
-                //Writeln(F1.T, s);
+//                Writeln(F1.T, CharToOemStr(s));
+                Writeln(F1.T, s);
                 Break
                 end;
               end;
@@ -547,14 +553,16 @@ RL:
               WriteEcho := False;
               {$ENDIF}
 //angelbbs
-               Writeln(F1.T, CharToOemStr(s));
-//              Writeln(F1.T, s);
+//               Writeln(F1.T, CharToOemStr(s));
+              Writeln(F1.T, s);
               First := False;
               end;
             if  (f^.Eof) then
               Break;
             if not EF then
               s := f^.GetStr;
+//angelbbs
+s := OemToCharStr(s);
           until (IOResult <> 0) or Abort or EF;
           Close(F1.T);
           AllRight := True;

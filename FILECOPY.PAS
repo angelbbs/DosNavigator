@@ -1015,7 +1015,9 @@ procedure FilesCopy(Files: PCollection; SourcePanel: PView;
           ExAttr := $FFFF;
           Wrote := 0;
           Info^.Write(5,
-               GetString(dlFC_Writing)+Cut(CurNewName, 40)+' ');
+//angelbbs
+//               GetString(dlFC_Writing)+Cut(CurNewName, 40)+' ');
+               GetString(dlFC_Writing)+Cut(CharToOemStr(CurNewName), 40)+' ');
           Info^.Write(6, Strg(#177, Info^.Size.X-6));
           Info^.Write(7, WriteCount);
           //Dispatch;
@@ -1774,7 +1776,9 @@ NoRename:
         cpmSkipAll:
           begin
 PrepareSkip:
-          Info^.Write(1, GetString(dlFC_Reading)+Cut(FName, 40));
+//angelbbs
+//          Info^.Write(1, GetString(dlFC_Reading)+Cut(FName, 40));
+          Info^.Write(1, GetString(dlFC_Reading)+Cut(CharToOemStr(FName), 40));
           Info^.Write(2, GetString(dlFC_Exists));
           ClrIO;
           Close(ReadStream.F);
@@ -1813,7 +1817,9 @@ PrepareResume:
       CopyCancel := False;
       lResetFile(ReadStream, 1);
       end;
-    Info^.Write(1, GetString(dlFC_Reading)+Cut(FName, 40)+' ');
+//angelbbs
+//    Info^.Write(1, GetString(dlFC_Reading)+Cut(FName, 40)+' ');
+    Info^.Write(1, GetString(dlFC_Reading)+Cut(CharToOemStr(FName), 40)+' ');
     Info^.Write(2, Strg(#177, Info^.Size.X-6));
     Info^.Write(3, ReadCount);
     //Dispatch;

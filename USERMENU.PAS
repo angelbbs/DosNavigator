@@ -943,7 +943,9 @@ function ExecUserMenu;
   if TitleStr = '' then
     TitleStr := GetString(dlMenuParamLabel);
   if EnterParms then
-    ExecUserMenu := InputBox(GetString(dlMenuParams), TitleStr, FreeStr,
+//angelbbs
+//    ExecUserMenu := InputBox(GetString(dlMenuParams), TitleStr, FreeStr,
+    ExecUserMenu := InputBox(GetString(dlMenuParams), CharToOemStr(TitleStr), FreeStr,
          125, hsInputParams) = cmOK;
   with UserParams do
     begin
@@ -1389,7 +1391,9 @@ RL:
     TitleStr := GetString(dlMenuParamLabel);
 
   QuickExecExternal := not EnterParms or
-        (InputBox(GetString(dlMenuParams), TitleStr, DefStr, 125,
+//angelbbs
+//        (InputBox(GetString(dlMenuParams), TitleStr, DefStr, 125,
+        (InputBox(GetString(dlMenuParams), CharToOemStr(TitleStr), DefStr, 125,
          hsInputParams) = cmOK);
 
   with UserParams do

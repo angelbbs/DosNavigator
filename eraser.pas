@@ -197,7 +197,9 @@ procedure EraseFiles;
       begin
       FreeStr := PString(DC^.At(0))^;
       DC^.AtFree(0);
-      PInfo^.Write(2, Cut(GetName(FreeStr), 40));
+//angelbbs
+//      PInfo^.Write(2, Cut(GetName(FreeStr), 40));
+      PInfo^.Write(2, Cut(CharToOemStr(GetName(FreeStr)), 40));
 
       if Word(Length(FreeStr))+Word(Length(x_x)) > MaxPathLen-1 then
         begin

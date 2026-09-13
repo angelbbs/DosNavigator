@@ -652,6 +652,7 @@ function ExecUserMenu;
     EnterParms: Boolean;
     TitleStr: String[30];
     DefStr: String;
+    _FreeStr: String;
     RF2E: Boolean;
     Event: TEvent;
     {$IFDEF OS2}
@@ -939,6 +940,7 @@ function ExecUserMenu;
     until False;
     end;
   Dispose(P, Done);
+//  FreeStr := DefStr;
   FreeStr := CharToOemStr(DefStr);
   if TitleStr = '' then
     TitleStr := GetString(dlMenuParamLabel);
@@ -953,7 +955,8 @@ function ExecUserMenu;
       ActiveList := '-';
     if PassiveList = '' then
       PassiveList := '-';
-    FreeStr := ActiveList+' '+PassiveList+' '+FreeStr;
+
+    FreeStr := ActiveList+' '+PassiveList+' '+OemToCharStr(FreeStr);
     end;
   EraseFile(SwpDir+'$dn'+ItoS(DNNumber)+'$.mnu');
   end { ExecUserMenu };
